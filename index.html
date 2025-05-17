@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Guess The Word</title>
+  </head>
+  <body>
+    <h1>Guess The Word</h1>
+    <div class="guess-game">
+      <div class="guess-word">
+        <div class="inputs"></div>
+        <div class="btns">
+          <button class = "btn check">Check Word</button>
+          <button class = "btn hint"></button>
+        </div>
+      </div>
+      <div class="keys">
+        <h2>Key Colors</h2>
+        <div class="key">
+          <div class="key-color right"></div>
+          <div class="key-text">Letter Is Right And In place</div>
+        </div>
+        <div class="key">
+          <div class="key-color not-in-place"></div>
+          <div class="key-text">Letter Is Right And Not In place</div>
+        </div>
+        <div class="key">
+          <div class="key-color wrong"></div>
+          <div class="key-text">Letter Is Wront And Not Exists In word</div>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
