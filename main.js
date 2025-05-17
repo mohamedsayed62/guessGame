@@ -83,6 +83,7 @@ checkBtn.addEventListener("click", () => {
   }
   if (guessWord.toUpperCase() == word) {
     alert("Congratulations, Your Guess Is Right");
+    tryInputs.forEach((input) => input.disabled = true);
   } else {
     tryDiv.classList.add("disabled-input");
     currentTry += 1;
