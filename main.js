@@ -109,6 +109,7 @@ hintBtn.addEventListener("click", () => {
     currentInput.classList.add("right");
   } else {
     let iter = rightLetters.keys();
+    let flag = false;
     for (let i = 0; i < rightLetters.size; i++) {
       if (i != iter.next().value) {
         console.log(iter.next().value);
@@ -117,14 +118,18 @@ hintBtn.addEventListener("click", () => {
         rightLetters.add(word[i]);
         currentInput.classList.add("right");
         currentInput.disabled = true;
+        flag = true;
         break;
       }
     }
-    let idx = rightLetters.size;
-    let currentInput = document.querySelector(`#guess-${currentTry}-letter-${idx + 1}`);
-        currentInput.value = word[idx];
-        rightLetters.add(word[idx]);
-        currentInput.classList.add("right");
-        currentInput.disabled = true;
+    if (!flag) {
+      let idx = rightLetters.size;
+      let currentInput = document.querySelector(`#guess-${currentTry}-letter-${idx + 1}`);
+      currentInput.value = word[idx];
+      rightLetters.add(word[idx]);
+      currentInput.classList.add("right");
+      currentInput.disabled = true;
+      return;
+    }
   }
 })
