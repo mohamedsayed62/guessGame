@@ -108,8 +108,10 @@ hintBtn.addEventListener("click", () => {
   hintBtn.innerHTML = `${--numOfHints} Hints`;
   if (rightLetters.length == 0) {
     let currentInput = document.querySelector(`#guess-${currentTry}-letter-${1}`);
+    rightLetters.push(0);
     currentInput.value = word[0];
     currentInput.classList.add("right");
+    currentInput.disabled = true;
   } else {
     let iter = setLetters.keys();
     let flag = false;
