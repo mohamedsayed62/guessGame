@@ -64,7 +64,7 @@ let checkBtn = document.querySelector(".check");
 let word = "ELZERO";
 let guessWord = "";
 
-let rightLetters = new Set();
+let rightLetters = [];
 checkBtn.addEventListener("click", () => {
   guessWord = "";
   let tryDiv = document.querySelector(`.inputs .try-${currentTry}`);
@@ -74,7 +74,7 @@ checkBtn.addEventListener("click", () => {
     let char = tryInputs[i].value.toUpperCase();
     if (char == word[i - 1]) {
       tryInputs[i].classList.add("right");
-      rightLetters.add(i - 1);
+      rightLetters.push(i - 1);
     } else if (word.includes(char)) {
       tryInputs[i].classList.add("not-in-place");
     } else {
@@ -102,21 +102,23 @@ checkBtn.addEventListener("click", () => {
 window.onload = generateInputs;
 
 hintBtn.addEventListener("click", () => {
-  if (numOfHints == 0 || rightLetters.size == word.length) return;
+  let setLetters = new Set(rightLetters.sort());
+  console.log(rightLetters.sort());
+  if (numOfHints == 0 || setLetters.size == word.length) return;
   hintBtn.innerHTML = `${--numOfHints} Hints`;
   if (rightLetters.length == 0) {
     let currentInput = document.querySelector(`#guess-${currentTry}-letter-${1}`);
     currentInput.value = word[0];
     currentInput.classList.add("right");
   } else {
-    let iter = rightLetters.keys();
+    let iter = setLetters.keys();
     let flag = false;
-    for (let i = 0; i < rightLetters.size; i++) {
-      if (i != iter.next().value) {
-        console.log(iter.next().value);
+    for (let i = 0; i < setLetters.size; i++) {
+      let next = iter.next().value;
+      if (i != next) {
         let currentInput = document.querySelector(`#guess-${currentTry}-letter-${i + 1}`);
         currentInput.value = word[i];
-        rightLetters.add(word[i]);
+        rightLetters.push(i);
         currentInput.classList.add("right");
         currentInput.disabled = true;
         flag = true;
@@ -124,10 +126,10 @@ hintBtn.addEventListener("click", () => {
       }
     }
     if (!flag) {
-      let idx = rightLetters.size;
+      let idx = setLetters.size;
       let currentInput = document.querySelector(`#guess-${currentTry}-letter-${idx + 1}`);
       currentInput.value = word[idx];
-      rightLetters.add(word[idx]);
+      rightLetters.push(idx);
       currentInput.classList.add("right");
       currentInput.disabled = true;
       return;
