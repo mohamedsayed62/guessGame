@@ -30,6 +30,52 @@ h1 {
   flex-wrap: wrap;
 }
 
+/* ── Target Word Display ── */
+.target-word-display {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #16213e, #0f3460);
+  border: 2px solid #e2b96f;
+  border-radius: 14px;
+  flex-wrap: wrap;
+}
+
+.target-letter-box {
+  width: 55px;
+  height: 55px;
+  border: 2px solid #e2b96f;
+  border-radius: 10px;
+  background: #1a1a2e;
+  color: #e2b96f;
+  font-size: 24px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(226, 185, 111, 0.25);
+  animation: popIn 0.4s ease backwards;
+}
+
+.target-label {
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: #e2b96f;
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
 /* ── Left panel: inputs + buttons ── */
 .guess-word {
   display: flex;
@@ -283,6 +329,12 @@ h1 {
       min-width: unset;
       max-width: 315px;
   }
+
+  .target-letter-box {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
 }
 
 /* Mobile: tighter layout, smaller boxes */
@@ -349,6 +401,12 @@ h1 {
   .win-overlay p {
     font-size: 1rem;
   }
+
+  .target-letter-box {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
 }
 
 /* Very small screens (320px) */
@@ -362,5 +420,11 @@ h1 {
   .inputs > div span {
     min-width: 38px;
     font-size: 14px;
+  }
+
+  .target-letter-box {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
   }
 }
