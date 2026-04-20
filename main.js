@@ -36,7 +36,30 @@ let entry = WORDS[Math.floor(Math.random() * WORDS.length)];
 let word  = entry.word;
 numOfLetters = word.length;
 
+// ─── Show Target Word Above Inputs ───
+function renderTargetWord() {
+  const container = document.getElementById("target-word-display");
+  container.innerHTML = "";
+
+  // Label
+  const label = document.createElement("div");
+  label.className = "target-label";
+  label.textContent = "الكلمة المطلوب كتابتها";
+  container.appendChild(label);
+
+  // One box per letter
+  word.split("").forEach((letter, i) => {
+    const box = document.createElement("div");
+    box.className = "target-letter-box";
+    box.textContent = letter;
+    box.style.animationDelay = `${i * 80}ms`;
+    container.appendChild(box);
+  });
+}
+
 function generateInputs() {
+  renderTargetWord();
+
   for (let i = 1; i <= numOfTries; i++) {
     const tryDiv = document.createElement("div");
     tryDiv.classList.add(`try-${i}`);
@@ -147,7 +170,7 @@ checkBtn.addEventListener("click", () => {
     if (guessWord === word) {
       showToast("🎉 تهانينا! خمّنت الكلمة الصحيحة");
       tryInputs.forEach(input => input.disabled = true);
-      setTimeout(() => showOverlay("🎉 أحسنت!", `خمّنت الكلمة <strong>${word}</strong> بنجاح`), 800);
+      setTimeout(() => showOverlay("🎉 أحسنت!", `كتبت الكلمة <strong>${word}</strong> بنجاح`), 800);
     } else {
       tryDiv.classList.add("disabled-input");
       currentTry += 1;
